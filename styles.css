@@ -353,6 +353,23 @@ body::before {
   color: var(--muted);
 }
 
+.coach-note {
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+  margin: 0;
+  padding: 14px 16px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--rule);
+}
+
+.coach-note blockquote {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.4;
+}
+
 .slots {
   display: grid;
   gap: 10px;
