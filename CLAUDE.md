@@ -8,10 +8,10 @@ server or database with it. Never change the app from here.
 ## How it's built
 
 - `index.html`, `styles.css`, `main.js`: the page. Plain files, no build.
-  Settings at the top of `main.js`: `VIDEO_ID`, `ROADMAP_START`.
+  Setting at the top of `main.js`: `VIDEO_ID`.
 - `netlify/functions/waitlist.mjs`: the backend (`/api/waitlist`), a
   Netlify Function. Sign ups are kept in Netlify Blobs, store "waitlist".
-- `netlify/lib/waitlist.mjs`: the waiting list rules (100 test slots, sign
+- `netlify/lib/waitlist.mjs`: the waiting list rules (100 early access spots, sign
   up order, one place per email, the leave link, the welcome email).
 - `admin.html`: the list, behind `ADMIN_PASSWORD`.
 - `privacy.html`: the privacy policy for the waiting list.

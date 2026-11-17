@@ -10,7 +10,7 @@ the Arete app: own repository, own Netlify site, own storage.
   roadmap counts from).
 - `netlify/functions/waitlist.mjs` the backend, a Netlify Function at
   `/api/waitlist`. Sign ups are kept in Netlify Blobs.
-- `netlify/lib/waitlist.mjs` the waiting list rules: 100 test slots in sign
+- `netlify/lib/waitlist.mjs` the waiting list rules: 100 early access spots in sign
   up order, one place per email, a welcome email with a leave link.
 - `admin.html` (at `/admin`) the list and a CSV download, behind a password.
 - `privacy.html` the privacy policy for the waiting list.

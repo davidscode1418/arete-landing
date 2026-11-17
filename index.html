@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Arete · Coming soon</title>
-  <meta name="description" content="Arete is an adaptive coach for triathletes and runners. It plans your season back from race day and adjusts every session to how you slept, how your legs feel and the load you're carrying. 100 test slots." />
+  <meta name="description" content="Arete is an adaptive coach for triathletes and runners. It plans your season back from race day and adjusts every session to how you slept, how your legs feel and the load you're carrying. 100 early access spots." />
   <link rel="canonical" href="https://areteprograms.net/" />
   <meta name="theme-color" content="#0a0c0d" />
 
@@ -12,14 +12,14 @@
   <meta property="og:url" content="https://areteprograms.net/" />
   <meta property="og:site_name" content="Arete" />
   <meta property="og:title" content="Arete: a triathlon and running coach that rewrites your plan around how you actually feel" />
-  <meta property="og:description" content="An adaptive triathlon and running coach, built on the rules of a self coached top 0.1% amateur. 100 test slots. Join the waiting list." />
+  <meta property="og:description" content="An adaptive triathlon and running coach, built on the rules of a self coached top 0.1% amateur. 100 early access spots. Join the waiting list." />
   <meta property="og:image" content="https://areteprograms.net/assets/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Arete. Morning. Legs are heavy, so today's intervals become an easy hour." />
+  <meta property="og:image:alt" content="Arete: a triathlon and running coach that rewrites your plan around how you actually feel." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Arete: a triathlon and running coach that rewrites your plan around how you actually feel" />
-  <meta name="twitter:description" content="An adaptive triathlon and running coach. 100 test slots. Join the waiting list." />
+  <meta name="twitter:description" content="An adaptive triathlon and running coach. 100 early access spots. Join the waiting list." />
   <meta name="twitter:image" content="https://areteprograms.net/assets/og.png" />
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -66,7 +66,7 @@
 
       <div class="slots" id="slots" aria-live="polite">
         <div class="slots-text">
-          <span class="label">Test slots</span>
+          <span class="label">Early access spots</span>
           <span class="slots-count"><b class="num" id="slots-left">100</b> of <span class="num">100</span> left</span>
         </div>
         <div class="slots-bar" id="slots-bar" aria-hidden="true"></div>
@@ -74,7 +74,7 @@
 
       <div class="cta-row">
         <a class="btn" href="#join">Join the waiting list</a>
-        <span class="cta-note">Free for the first 100 test athletes.</span>
+        <span class="cta-note">The first 100 on the list get in first.</span>
       </div>
     </section>
 
@@ -185,32 +185,22 @@
       <header class="section-head">
         <p class="label">Roadmap</p>
         <h2 id="road-h">What happens next.</h2>
-        <p class="section-lede">Counted in days from today. Everyone on the waiting list hears about each step first.</p>
+        <p class="section-lede">Three phases. Everyone on the waiting list hears about each one first.</p>
       </header>
 
-      <div class="track" aria-hidden="true">
-        <div class="track-bar"><span class="track-now" id="track-now"></span></div>
-        <div class="track-marks" id="track-marks"></div>
-      </div>
-
-      <ol class="milestones" id="milestones">
-        <li data-day="30">
-          <p class="m-when"><span class="num m-days">D−30</span><span class="m-date"></span></p>
-          <h3>Test athletes</h3>
-          <p>The first 100 people on the waiting list get an invite and full access, free, while we test and tune the coach.</p>
+      <ol class="milestones phases">
+        <li class="is-next">
+          <p class="m-when"><span class="num m-days">Phase 1</span><span class="m-date">Up next</span></p>
+          <h3>Early access</h3>
+          <p>Arete opens to the waiting list, in the order people joined. You get an invite by email and start training with the coach before anyone else.</p>
         </li>
-        <li data-day="90">
-          <p class="m-when"><span class="num m-days">D−90</span><span class="m-date"></span></p>
-          <h3>Early adopters</h3>
-          <p>Paid early access opens to everyone on the waiting list, before the public.</p>
-        </li>
-        <li data-day="120">
-          <p class="m-when"><span class="num m-days">D−120</span><span class="m-date"></span></p>
+        <li>
+          <p class="m-when"><span class="num m-days">Phase 2</span><span class="m-date">Later</span></p>
           <h3>Mobile app</h3>
           <p>Arete on iPhone and Android, with the same coach and your same plan.</p>
         </li>
-        <li data-day="150">
-          <p class="m-when"><span class="num m-days">D−150</span><span class="m-date"></span></p>
+        <li>
+          <p class="m-when"><span class="num m-days">Phase 3</span><span class="m-date">Later</span></p>
           <h3>Open to everyone</h3>
           <p>Anyone can sign up.</p>
         </li>
@@ -244,9 +234,9 @@
     <section class="join wrap" id="join" aria-labelledby="join-h" tabindex="-1">
       <div class="join-copy">
         <p class="label">Waiting list</p>
-        <h2 id="join-h">Claim a test slot.</h2>
-        <p>100 slots, first come first served. If they're gone you stay on the list, next in line when a slot frees up and first to hear about early access.</p>
-        <p class="muted">You get one email confirming your place, then only news about the test and the launch. Every email has a link that takes you off the list and deletes your details.</p>
+        <h2 id="join-h">Get early access.</h2>
+        <p>100 early access spots, first come first served. If they're gone you stay on the list, next in line when a spot opens up.</p>
+        <p class="muted">You get one email confirming your place, then only news about early access and the launch. Every email has a link that takes you off the list and deletes your details.</p>
       </div>
 
       <form class="join-form" id="join-form" novalidate>
@@ -280,7 +270,7 @@
         </div>
         <label class="consent" for="f-consent">
           <input id="f-consent" name="consent" type="checkbox" value="yes" required />
-          <span>Email me about the test and the launch. I've read the <a href="/privacy">privacy policy</a>.</span>
+          <span>Email me about early access and the launch. I've read the <a href="/privacy">privacy policy</a>.</span>
         </label>
         <p class="form-error" id="form-error" role="alert" hidden></p>
         <button type="submit" class="btn btn-full" id="join-submit">Join the waiting list</button>

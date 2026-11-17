@@ -706,70 +706,6 @@ body::before {
   padding-block: 80px 72px;
 }
 
-.track {
-  position: relative;
-  margin: 0 0 28px;
-}
-
-.track-bar {
-  position: relative;
-  height: 10px;
-  background: repeating-linear-gradient(90deg, var(--line) 0 calc(100% / 30 - 2px), transparent calc(100% / 30 - 2px) calc(100% / 30));
-}
-
-.track-now {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  background: var(--rule);
-}
-
-.track-marks {
-  position: relative;
-  height: 26px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.track-marks span {
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
-  padding-top: 8px;
-  white-space: nowrap;
-}
-
-.track-marks span::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: -14px;
-  width: 2px;
-  height: 18px;
-  background: var(--text);
-}
-
-.track-marks span:first-child {
-  transform: none;
-}
-
-.track-marks span:first-child::before {
-  left: 0;
-  background: var(--rule);
-}
-
-.track-marks span:last-child {
-  transform: translateX(-100%);
-}
-
-.track-marks span:last-child::before {
-  left: auto;
-  right: 0;
-}
-
 .milestones {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -781,15 +717,9 @@ body::before {
   border: 1px solid var(--line);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 720px) {
   .milestones {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1000px) {
-  .milestones {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -801,8 +731,12 @@ body::before {
   background: var(--surface);
 }
 
-.milestones li:first-child {
+.milestones li.is-next {
   box-shadow: inset 0 3px 0 var(--rule);
+}
+
+.milestones li:not(.is-next) .m-days {
+  color: var(--muted);
 }
 
 .m-when {

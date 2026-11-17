@@ -3,7 +3,6 @@
 // Settings you may change:
 //   VIDEO_ID       the YouTube id of the 5 minute video (the part after
 //                  "watch?v=" or "youtu.be/"). Empty shows "coming soon".
-//   ROADMAP_START  the day the roadmap counts from (YYYY-MM-DD).
 //
 // Sign ups go to this site's own backend (netlify/functions/waitlist.mjs),
 // which keeps them in Netlify Blobs. Nothing here talks to the Arete app.
@@ -13,7 +12,6 @@
 // up came from.
 
 const VIDEO_ID = ''
-const ROADMAP_START = '2026-11-17'
 const API = '/api'
 const SLOTS = 100
 
@@ -38,7 +36,7 @@ $('theme-toggle').addEventListener('click', () => {
 })
 setTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
 
-// --- Test slots left ----------------------------------------------------------
+// --- Early access spots left ----------------------------------------------------------
 
 function drawSlots(taken) {
   const bar = $('slots-bar')
@@ -58,37 +56,6 @@ fetch(`${API}/waitlist/status`)
     if (s) drawSlots(Math.min(SLOTS, s.taken))
   })
   .catch(() => {})
-
-// --- Roadmap ------------------------------------------------------------------
-
-const DAY = 86400000
-const start = new Date(`${ROADMAP_START}T00:00:00`)
-const today = new Date()
-today.setHours(0, 0, 0, 0)
-const elapsed = Math.max(0, Math.round((today - start) / DAY))
-const SPAN = 150
-
-function fmt(d) {
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
-}
-
-document.querySelectorAll('#milestones li').forEach((li) => {
-  const day = Number(li.dataset.day)
-  const when = new Date(start.getTime() + day * DAY)
-  const left = day - elapsed
-  li.querySelector('.m-days').textContent = left > 1 ? `In ${left} days` : left === 1 ? 'Tomorrow' : left === 0 ? 'Today' : 'Open now'
-  li.querySelector('.m-date').textContent = fmt(when)
-})
-
-$('track-now').style.width = `${Math.min(100, (elapsed / SPAN) * 100)}%`
-const marks = [[0, 'Today'], [30, 'Test'], [90, 'Early access'], [120, 'App'], [150, 'Public']]
-marks.forEach(([d, name], i) => {
-  const s = document.createElement('span')
-  s.style.left = `${(d / SPAN) * 100}%`
-  s.textContent = i === 0 ? name : `D${d}`
-  s.title = name
-  $('track-marks').appendChild(s)
-})
 
 // --- Video ----------------------------------------------------------------------
 
@@ -142,7 +109,7 @@ form.addEventListener('submit', async (e) => {
   const email = $('f-email')
   if (!name.value.trim()) return showError('Add your name.', name)
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) return showError("That doesn't look like an email address.", email)
-  if (!$('f-consent').checked) return showError('Tick the box so I can email you about the test.', $('f-consent'))
+  if (!$('f-consent').checked) return showError('Tick the box so I can email you about early access.', $('f-consent'))
 
   const data = new FormData(form)
   const button = $('join-submit')
@@ -180,11 +147,11 @@ function joined(res, first) {
   const note = $('joined-note')
   const who = first ? `${first}, you're` : "You're"
   if (res.has_slot) {
-    line.innerHTML = `${res.already ? 'Already on the list. ' : ''}${who} number <mark>${res.position} of ${res.slots}</mark>. That's a test slot.`
-    note.textContent = "Check your inbox for the confirmation. When testing opens you'll get an invite code by email."
+    line.innerHTML = `${res.already ? 'Already on the list. ' : ''}${who} number <mark>${res.position} of ${res.slots}</mark>. That's an early access spot.`
+    note.textContent = "Check your inbox for the confirmation. When early access opens you'll get an invite by email."
   } else {
     line.innerHTML = `${res.already ? 'Already on the list. ' : ''}${who} number <mark>${res.position}</mark> on the list.`
-    note.textContent = `The ${res.slots} test slots are taken, so you're next in line if one frees up, and first to hear about early access. Check your inbox for the confirmation.`
+    note.textContent = `The ${res.slots} early access spots are taken, so you're next in line when one opens up. Check your inbox for the confirmation.`
   }
   form.hidden = true
   $('joined').hidden = false

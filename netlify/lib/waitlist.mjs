@@ -1,4 +1,4 @@
-// The waiting list: who joined, in what order, and the 100 test slots.
+// The waiting list: who joined, in what order, and the 100 early access spots.
 // Everything here takes the store and the mailer as arguments, so it runs
 // the same on Netlify (Netlify Blobs) and in the tests (an in-memory store).
 //
@@ -54,7 +54,7 @@ export async function join(store, input, { now = Date.now(), send = async () => 
   const name = String(input.name || '').trim().slice(0, 80)
   if (!name) throw new Problem(422, 'Add your name.')
   if (!EMAIL_SHAPE.test(email) || email.length > 254) throw new Problem(422, "That doesn't look like an email address.")
-  if (input.consent !== true) throw new Problem(422, 'Tick the box so I can email you about the test.')
+  if (input.consent !== true) throw new Problem(422, 'Tick the box so I can email you about early access.')
 
   const mKey = `m/${sha(email)}`
   const existing = await store.get(mKey, { type: 'json' })
@@ -121,17 +121,17 @@ export function welcomeEmail(entry, place, pageUrl = 'https://areteprograms.net'
   const first = entry.name.split(' ')[0] || 'there'
   const leaveLink = `${pageUrl}/?leave=${entry.token}`
   const hasSlot = place <= SLOTS
-  const subject = hasSlot ? `You're number ${place} of ${SLOTS} on the Arete test list` : "You're on the Arete waiting list"
+  const subject = hasSlot ? `You're number ${place} of ${SLOTS} for Arete early access` : "You're on the Arete waiting list"
   const lead = hasSlot
-    ? `You're number ${place} of ${SLOTS}, so you have a test slot. When testing opens I'll email you an invite and you'll be training with Arete before anyone else.`
-    : `The ${SLOTS} test slots are taken, but you're on the list at number ${place}. If a slot frees up it goes to the next in line, and you'll hear about early access first.`
+    ? `You're number ${place} of ${SLOTS}, so you have an early access spot. When early access opens I'll email you an invite and you'll be training with Arete before anyone else.`
+    : `The ${SLOTS} early access spots are taken, but you're on the list at number ${place}. When a spot opens up it goes to the next in line.`
   const about = "Arete is a coach that plans your season back from race day and adjusts every session to how you slept, how your legs feel and the load you're carrying."
-  const quiet = 'Until then, the only emails you get from me are about the test and the launch.'
+  const quiet = 'Until then, the only emails you get from me are about early access and the launch.'
   const text = `Hi ${first},\n\n${lead}\n\n${about}\n\n${quiet}\n\nDavid\nArete\n\nNot for you after all? Take yourself off the list: ${leaveLink}`
   const html = `<!doctype html><html><body style="margin:0;padding:24px;background:#0a0c0d;font-family:Helvetica,Arial,sans-serif;color:#e8ecee">
 <div style="max-width:520px;margin:0 auto;background:#121619;border:1px solid #23292d;padding:28px">
 <p style="margin:0 0 18px;font-family:Menlo,monospace;font-weight:700;letter-spacing:0.18em;font-size:13px">ARETE</p>
-<p style="margin:0 0 14px;font-family:Georgia,serif;font-size:22px;line-height:1.3">Hi ${esc(first)}. <span style="color:#c8f031">${hasSlot ? `Your test slot is number ${place}.` : "You're on the list."}</span></p>
+<p style="margin:0 0 14px;font-family:Georgia,serif;font-size:22px;line-height:1.3">Hi ${esc(first)}. <span style="color:#c8f031">${hasSlot ? `Your early access spot is number ${place}.` : "You're on the list."}</span></p>
 <p style="margin:0 0 14px;line-height:1.55;color:#c9d0d4">${esc(lead)}</p>
 <p style="margin:0 0 14px;line-height:1.55;color:#c9d0d4">${esc(about)}</p>
 <p style="margin:0 0 22px;line-height:1.55;color:#c9d0d4">${esc(quiet)}</p>

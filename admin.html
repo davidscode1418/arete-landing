@@ -68,7 +68,7 @@
       const by = {}
       rows.forEach((r) => { const k = r.source || 'direct'; by[k] = (by[k] || 0) + 1 })
       const from = Object.entries(by).sort((a, b) => b[1] - a[1]).map(([k, n]) => k + ' ' + n).join(', ')
-      $('a-summary').textContent = Math.min(rows.length, SLOTS) + ' of ' + SLOTS + ' test slots taken' +
+      $('a-summary').textContent = Math.min(rows.length, SLOTS) + ' of ' + SLOTS + ' early access spots taken' +
         (rows.length > SLOTS ? ', ' + (rows.length - SLOTS) + ' next in line' : '') + (from ? '. From: ' + from + '.' : '.')
       const body = $('a-rows')
       body.textContent = ''
