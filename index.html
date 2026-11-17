@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Arete · Coming soon</title>
+  <meta name="description" content="Arete is an adaptive coach for triathletes and runners. It plans your season back from race day and adjusts every session to how you slept, how your legs feel and the load you're carrying. 100 test slots." />
+  <link rel="canonical" href="https://areteprograms.net/" />
+  <meta name="theme-color" content="#0a0c0d" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://areteprograms.net/" />
+  <meta property="og:site_name" content="Arete" />
+  <meta property="og:title" content="Arete: the coach that adjusts every day" />
+  <meta property="og:description" content="An adaptive triathlon and running coach, built on the rules of a self coached top 0.1% amateur. 100 test slots. Join the waiting list." />
+  <meta property="og:image" content="https://areteprograms.net/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Arete. Morning. Legs are heavy, so today's intervals become an easy hour." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arete: the coach that adjusts every day" />
+  <meta name="twitter:description" content="An adaptive triathlon and running coach. 100 test slots. Join the waiting list." />
+  <meta name="twitter:image" content="https://areteprograms.net/assets/og.png" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-condensed-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>
+    // Dark unless this visitor chose light (same default as the app).
+    try { if (localStorage.getItem('arete-theme') === 'light') document.documentElement.dataset.theme = 'light' } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#join">Skip to the sign up form</a>
+
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="#" aria-label="Arete, back to the top">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M38.37 75.95 A34 34 0 1 1 61.63 75.95" fill="none" stroke="currentColor" stroke-width="8.5" stroke-linecap="round" /><circle cx="50" cy="82" r="8" fill="none" class="bead" stroke-width="7" /></svg>
+        <span class="brand-word">Arete</span>
+      </a>
+      <div class="top-end">
+        <a class="top-cta" href="#join">Join the waiting list</a>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="i-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" /></svg>
+          <svg class="i-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="left wrap" id="left" hidden aria-live="polite">
+      <p class="voice" id="left-line">Taking you off the list…</p>
+    </section>
+    <section class="hero wrap" aria-labelledby="hero-h">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Coming soon · Triathlon and running</p>
+      <h1 id="hero-h" class="voice">Morning. Sleep was short and your legs are heavy, so <mark>today's intervals become an easy hour</mark>. The hard work moves to Thursday.</h1>
+      <p class="lede">Arete is a coach that plans your season back from race day, then adjusts every session to how you slept, how your legs feel and the load you're carrying. It runs on the rules I used to reach 122nd in the world at 70.3 as a self coached amateur.</p>
+
+      <div class="slots" id="slots" aria-live="polite">
+        <div class="slots-text">
+          <span class="label">Test slots</span>
+          <span class="slots-count"><b class="num" id="slots-left">100</b> of <span class="num">100</span> left</span>
+        </div>
+        <div class="slots-bar" id="slots-bar" aria-hidden="true"></div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="#join">Join the waiting list</a>
+        <span class="cta-note">Free for the first 100 test athletes.</span>
+      </div>
+    </section>
+
+    <section class="video wrap" aria-labelledby="video-h">
+      <h2 id="video-h" class="sr-only">Video: why I built Arete</h2>
+      <div class="video-frame" id="video-frame">
+        <button type="button" class="video-poster" id="video-play" aria-label="Play the video: why I built Arete, 5 minutes">
+          <span class="video-quote">“Easy days have to be easy. That's where the engine gets built.”</span>
+          <span class="video-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="currentColor" /></svg></span>
+          <span class="video-meta"><span class="label">Watch</span> David on why he built Arete · <span class="num">5 min</span></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="screens wrap" aria-labelledby="screens-h">
+      <header class="section-head">
+        <p class="label">Inside Arete</p>
+        <h2 id="screens-h">A coach that shows its working.</h2>
+        <p class="section-lede">Screens from the app, filled in with a sample athlete.</p>
+      </header>
+
+      <div class="shot-row">
+        <figure class="shot phone">
+          <img class="on-dark" src="assets/shots/phone_plan_dark.webp" width="780" height="1688" alt="Arete on a phone: the coach's morning call, fitness, fatigue and form, and weeks to race day" loading="lazy" decoding="async" />
+          <img class="on-light" src="assets/shots/phone_plan_light.webp" width="780" height="1688" alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="shot-copy">
+          <p class="label">01 · Every morning</p>
+          <h3>The coach speaks first.</h3>
+          <p>Open the app and get a call on today's session, written like a coach would say it. Under it: your fitness, fatigue and form, and how many weeks are left to race day.</p>
+        </div>
+      </div>
+
+      <div class="shot-row wide">
+        <figure class="shot desk">
+          <figcaption class="bar"><span></span><span></span><span></span><b class="num">Session analysis</b></figcaption>
+          <img class="on-dark" src="assets/shots/desk_activity_dark.webp" width="1600" height="1000" alt="Arete on a computer: a bike session analysed, with power, heart rate, speed and elevation against the plan" loading="lazy" decoding="async" />
+          <img class="on-light" src="assets/shots/desk_activity_light.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="shot-copy">
+          <p class="label">02 · After every session</p>
+          <h3>Every session analysed against the plan.</h3>
+          <p>Power, heart rate, pace and elevation over time, how much of the plan you did, and what the session did to your fitness. An easy day that drifted too hard gets flagged.</p>
+        </div>
+      </div>
+
+      <div class="shot-row flip">
+        <figure class="shot phone">
+          <img class="on-dark" src="assets/shots/phone_session_dark.webp" width="780" height="1688" alt="A planned session on a phone with its steps and the coach's explanation of the goal and why it's planned" loading="lazy" decoding="async" />
+          <img class="on-light" src="assets/shots/phone_session_light.webp" width="780" height="1688" alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="shot-copy">
+          <p class="label">03 · Before every session</p>
+          <h3>Know why each session is there.</h3>
+          <p>Every workout comes as steps with your own power, pace and heart rate targets. Tap the coach's explanation for the goal, why it's in the plan this week and how it should feel. Then send it to your watch.</p>
+        </div>
+      </div>
+
+      <div class="shot-row wide flip">
+        <figure class="shot desk">
+          <figcaption class="bar"><span></span><span></span><span></span><b class="num">Fitness and form</b></figcaption>
+          <img class="on-dark" src="assets/shots/desk_fitness_dark.webp" width="1600" height="1000" alt="Fitness, fatigue and form over three months, with the back off line and the coach's explanation of TSS, CTL, ATL and TSB" loading="lazy" decoding="async" />
+          <img class="on-light" src="assets/shots/desk_fitness_light.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="shot-copy">
+          <p class="label">04 · Every week</p>
+          <h3>Fitness, fatigue and form, watched for you.</h3>
+          <p>Fitness going up while form keeps falling is a warning, and the coach treats it as one. Cross the back off line and your next days get easier before you dig a hole.</p>
+        </div>
+      </div>
+
+      <div class="shot-row">
+        <figure class="shot phone">
+          <img class="on-dark" src="assets/shots/phone_checkin_dark.webp" width="780" height="1688" alt="The morning check in on a phone: how hard yesterday was, sleep, sleep quality and soreness" loading="lazy" decoding="async" />
+          <img class="on-light" src="assets/shots/phone_checkin_light.webp" width="780" height="1688" alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="shot-copy">
+          <p class="label">05 · Under a minute</p>
+          <h3>A morning check in that changes the day.</h3>
+          <p>Sleep, soreness and motivation. If the signs say you're run down, today's session gets easier and the hard work moves. If they say go, you go.</p>
+        </div>
+      </div>
+
+      <div class="shot-row wide flip">
+        <figure class="shot desk">
+          <figcaption class="bar"><span></span><span></span><span></span><b class="num">Season planner</b></figcaption>
+          <img class="on-dark" src="assets/shots/desk_season_dark.webp" width="1600" height="1000" alt="The season planner: weekly hours from base through build, peak and taper to a 70.3 race" loading="lazy" decoding="async" />
+          <img class="on-light" src="assets/shots/desk_season_light.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="shot-copy">
+          <p class="label">06 · The whole season</p>
+          <h3>Planned back from race day.</h3>
+          <p>A long, patient base, then build, peak and taper, sized to the hours you actually have. Change your race, your hours or your days and the plan rebuilds from today.</p>
+        </div>
+      </div>
+
+      <p class="sync-line"><span class="label">Syncs with</span> Garmin Connect and Strava. Finished sessions come in on their own, and planned workouts go to your Garmin.</p>
+    </section>
+
+    <section class="cta-band" aria-label="Join the waiting list">
+      <div class="wrap cta-band-row">
+        <p class="voice cta-band-line">Be one of the first <mark>100 athletes</mark> to train with Arete.</p>
+        <a class="btn" href="#join">Join the waiting list</a>
+      </div>
+    </section>
+
+    <section class="roadmap wrap" aria-labelledby="road-h">
+      <header class="section-head">
+        <p class="label">Roadmap</p>
+        <h2 id="road-h">What happens next.</h2>
+        <p class="section-lede">Counted in days from today. Everyone on the waiting list hears about each step first.</p>
+      </header>
+
+      <div class="track" aria-hidden="true">
+        <div class="track-bar"><span class="track-now" id="track-now"></span></div>
+        <div class="track-marks" id="track-marks"></div>
+      </div>
+
+      <ol class="milestones" id="milestones">
+        <li data-day="30">
+          <p class="m-when"><span class="num m-days">D−30</span><span class="m-date"></span></p>
+          <h3>Test athletes</h3>
+          <p>The first 100 people on the waiting list get an invite and full access, free, while we test and tune the coach.</p>
+        </li>
+        <li data-day="90">
+          <p class="m-when"><span class="num m-days">D−90</span><span class="m-date"></span></p>
+          <h3>Early adopters</h3>
+          <p>Paid early access opens to everyone on the waiting list, before the public.</p>
+        </li>
+        <li data-day="120">
+          <p class="m-when"><span class="num m-days">D−120</span><span class="m-date"></span></p>
+          <h3>Mobile app</h3>
+          <p>Arete on iPhone and Android, with the same coach and your same plan.</p>
+        </li>
+        <li data-day="150">
+          <p class="m-when"><span class="num m-days">D−150</span><span class="m-date"></span></p>
+          <h3>Open to everyone</h3>
+          <p>Anyone can sign up.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="about wrap" aria-labelledby="about-h">
+      <figure class="portrait" id="portrait">
+        <img src="assets/david.jpg" width="900" height="1125" alt="David Mostert, founder of Arete" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('no-photo')" />
+        <span class="portrait-fallback" aria-hidden="true">DM</span>
+      </figure>
+      <div class="about-copy">
+        <p class="label">About me</p>
+        <h2 id="about-h">I'm David. I coached myself to 122nd in the world.</h2>
+        <p>From 2020 to 2023 I trained and raced triathlon full time, with no coach but myself, and climbed to 122nd in the world among roughly 150,000 amateur 70.3 athletes.</p>
+        <p>Most of that came from getting the unglamorous parts right: a long, patient base, easy days kept truly easy, and backing off before fatigue turned into injury. Arete is those rules written down as a coach that applies them every single day, to your training.</p>
+
+        <table class="records">
+          <caption class="label">Records</caption>
+          <tbody>
+            <tr><th scope="row">70.3 world ranking, amateur</th><td class="num">122</td><td>of about 150,000</td></tr>
+            <tr><th scope="row">Marathon</th><td class="num">2:57:31</td><td>2021</td></tr>
+            <tr><th scope="row">10 km</th><td class="num">38:42</td><td>Ramat Gan, 2023</td></tr>
+            <tr><th scope="row">15 km, hilly</th><td class="num">1:02:54</td><td>Constantia, Cape Town, 2023</td></tr>
+            <tr><th scope="row">FTP</th><td class="num">310 W</td><td>4.2 W/kg at 74 kg, 2023</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="join wrap" id="join" aria-labelledby="join-h" tabindex="-1">
+      <div class="join-copy">
+        <p class="label">Waiting list</p>
+        <h2 id="join-h">Claim a test slot.</h2>
+        <p>100 slots, first come first served. If they're gone you stay on the list, next in line when a slot frees up and first to hear about early access.</p>
+        <p class="muted">You get one email confirming your place, then only news about the test and the launch. Every email has a link that takes you off the list and deletes your details.</p>
+      </div>
+
+      <form class="join-form" id="join-form" novalidate>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" />
+        </div>
+        <fieldset class="field choice">
+          <legend>What do you train for?</legend>
+          <div class="chips">
+            <label><input type="radio" name="sport" value="triathlon" id="f-sport-tri" checked /><span>Triathlon</span></label>
+            <label><input type="radio" name="sport" value="running" id="f-sport-run" /><span>Running</span></label>
+            <label><input type="radio" name="sport" value="both" id="f-sport-both" /><span>Both</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="field choice">
+          <legend>Where do your sessions live?</legend>
+          <div class="chips">
+            <label><input type="radio" name="watch" value="garmin" id="f-watch-garmin" checked /><span>Garmin</span></label>
+            <label><input type="radio" name="watch" value="strava" id="f-watch-strava" /><span>Strava</span></label>
+            <label><input type="radio" name="watch" value="other" id="f-watch-other" /><span>Something else</span></label>
+          </div>
+        </fieldset>
+        <div class="hp" aria-hidden="true">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <label class="consent" for="f-consent">
+          <input id="f-consent" name="consent" type="checkbox" value="yes" required />
+          <span>Email me about the test and the launch. I've read the <a href="/privacy">privacy policy</a>.</span>
+        </label>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-full" id="join-submit">Join the waiting list</button>
+      </form>
+
+      <div class="joined" id="joined" hidden tabindex="-1">
+        <p class="label">You're on the list</p>
+        <p class="voice joined-line" id="joined-line"></p>
+        <p class="muted" id="joined-note"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-row">
+      <span class="brand-word small">Arete</span>
+      <span class="muted">Adaptive coaching for triathletes and runners.</span>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="/privacy">Privacy policy</a>
+        <span class="muted">© <span id="year">2026</span> MGM Agency</span>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

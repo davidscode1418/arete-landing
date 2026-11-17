@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>Arete · Waiting list</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <script>try { if (localStorage.getItem("arete-theme") === "light") document.documentElement.dataset.theme = "light" } catch (e) {}</script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="/" aria-label="Arete, back to the page">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M38.37 75.95 A34 34 0 1 1 61.63 75.95" fill="none" stroke="currentColor" stroke-width="8.5" stroke-linecap="round" /><circle cx="50" cy="82" r="8" fill="none" class="bead" stroke-width="7" /></svg>
+        <span class="brand-word">Arete</span>
+      </a>
+    </div>
+  </header>
+  <main class="wrap admin">
+    <p class="label">Admin</p>
+    <h1>Waiting list</h1>
+
+    <form class="admin-login" id="login">
+      <div class="field">
+        <label for="a-pass">Password</label>
+        <input id="a-pass" type="password" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn">Show the list</button>
+      <p class="form-error" id="a-error" role="alert" hidden></p>
+    </form>
+
+    <section id="list" hidden>
+      <div class="admin-head">
+        <p id="a-summary"></p>
+        <button type="button" class="btn" id="a-csv">Download CSV</button>
+      </div>
+      <div class="admin-table">
+        <table>
+          <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Sport</th><th>Watch</th><th>From</th><th>Joined</th></tr></thead>
+          <tbody id="a-rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script>
+    // The password is sent in a header, never in the address.
+    const SLOTS = 100
+    let rows = []
+    const $ = (id) => document.getElementById(id)
+
+    $('login').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      $('a-error').hidden = true
+      const r = await fetch('/api/waitlist/admin', { headers: { Authorization: 'Bearer ' + $('a-pass').value } }).catch(() => null)
+      if (!r || !r.ok) {
+        $('a-error').textContent = r && r.status === 401 ? 'Wrong password.' : "Couldn't load the list. Try again."
+        $('a-error').hidden = false
+        return
+      }
+      rows = await r.json()
+      $('login').hidden = true
+      draw()
+    })
+
+    function draw() {
+      const by = {}
+      rows.forEach((r) => { const k = r.source || 'direct'; by[k] = (by[k] || 0) + 1 })
+      const from = Object.entries(by).sort((a, b) => b[1] - a[1]).map(([k, n]) => k + ' ' + n).join(', ')
+      $('a-summary').textContent = Math.min(rows.length, SLOTS) + ' of ' + SLOTS + ' test slots taken' +
+        (rows.length > SLOTS ? ', ' + (rows.length - SLOTS) + ' next in line' : '') + (from ? '. From: ' + from + '.' : '.')
+      const body = $('a-rows')
+      body.textContent = ''
+      rows.forEach((r) => {
+        const tr = document.createElement('tr')
+        if (r.position > SLOTS) tr.className = 'muted'
+        ;[r.position, r.name, r.email, r.sport || '', r.watch || '', r.source || '', new Date(r.joined).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })]
+          .forEach((v) => { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td) })
+        body.appendChild(tr)
+      })
+      $('list').hidden = false
+    }
+
+    $('a-csv').addEventListener('click', () => {
+      const esc = (v) => { const s = v == null ? '' : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s }
+      const head = ['position', 'name', 'email', 'sport', 'watch', 'source', 'joined']
+      const csv = [head.join(',')].concat(rows.map((r) => head.map((h) => esc(r[h])).join(','))).join('\n')
+      const a = document.createElement('a')
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }))
+      a.download = 'arete-waiting-list.csv'
+      a.click()
+    })
+  </script>
+</body>
+</html>
