@@ -485,56 +485,49 @@ body::before {
 .video-poster {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  align-items: center;
-  justify-items: start;
-  gap: 16px;
   width: 100%;
-  padding: clamp(18px, 4vw, 48px);
+  padding: 0;
   border: 0;
-  background: var(--surface);
+  /* The same picture as the YouTube thumbnail; YouTube itself only loads on play. */
+  background: #0a0c0d url(assets/video-poster.jpg) center / cover no-repeat;
   color: var(--text);
-  text-align: left;
   font: inherit;
   cursor: pointer;
 }
 
-.video-quote {
-  max-width: 24ch;
-  font-family: var(--serif);
-  font-size: clamp(22px, 3.6vw, 44px);
-  line-height: 1.15;
-  color: var(--text-strong);
-}
-
 .video-play {
   position: absolute;
-  right: clamp(18px, 4vw, 48px);
-  bottom: clamp(18px, 4vw, 48px);
+  left: 70%;
+  top: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(52px, 7vw, 76px);
-  height: clamp(52px, 7vw, 76px);
+  width: clamp(56px, 8vw, 92px);
+  height: clamp(56px, 8vw, 92px);
   background: var(--accent);
   color: var(--accent-text);
+  box-shadow: 0 10px 40px #0009;
+  transform: translate(-50%, -50%);
   transition: transform 150ms ease;
 }
 
 .video-poster:hover .video-play {
-  transform: scale(1.06);
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
 .video-meta {
-  font-size: 15px;
-  color: var(--muted);
-  padding-right: 90px;
+  position: absolute;
+  right: clamp(10px, 2vw, 20px);
+  top: clamp(10px, 2vw, 20px);
+  padding: 6px 10px;
+  background: #0a0c0dcc;
+  font-size: clamp(11px, 1.2vw, 14px);
+  color: #e8ecee;
 }
 
 .video-soon .video-play {
-  background: var(--line-strong);
-  color: var(--muted);
+  background: #364046;
+  color: #8b969c;
 }
 
 .video-soon {

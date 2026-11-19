@@ -11,7 +11,7 @@
 // end (utm_source works too) and the waiting list records where each sign
 // up came from.
 
-const VIDEO_ID = ''
+const VIDEO_ID = 'jAauUUzhCM0'
 const API = '/api'
 const SLOTS = 100
 
@@ -63,7 +63,7 @@ const poster = $('video-play')
 if (!VIDEO_ID) {
   poster.classList.add('video-soon')
   poster.setAttribute('aria-label', 'The video is coming soon')
-  poster.querySelector('.video-meta').innerHTML = '<span class="label">Video</span> David on why he built Arete · coming soon'
+  poster.querySelector('.video-meta').innerHTML = '<span class="label">Video</span> Coming soon'
 } else {
   poster.addEventListener('click', () => {
     // Loaded only on a click, so YouTube sees nothing until someone plays it.
@@ -72,6 +72,8 @@ if (!VIDEO_ID) {
     f.title = 'Why I built Arete'
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'
     f.allowFullscreen = true
+    // YouTube refuses to play embeds that don't say which site they're on.
+    f.referrerPolicy = 'strict-origin-when-cross-origin'
     $('video-frame').replaceChildren(f)
   })
 }
