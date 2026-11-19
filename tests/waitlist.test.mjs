@@ -1,7 +1,7 @@
-// npm test   (no Netlify needed: an in-memory store stands in for Blobs)
+// npm test   (no Cloudflare needed: an in-memory store stands in for D1)
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { SLOTS, everyone, join, leave, passwordMatches, status } from '../netlify/lib/waitlist.mjs'
+import { SLOTS, everyone, join, leave, passwordMatches, status } from '../lib/waitlist.mjs'
 
 function memoryStore() {
   const m = new Map()
@@ -78,8 +78,8 @@ test('the leave link deletes everything about that person, once', async () => {
   assert.equal(r.already, false)
 })
 
-test('admin password check', () => {
-  assert.equal(passwordMatches('secret one', 'secret one'), true)
-  assert.equal(passwordMatches('secret', 'secret one'), false)
-  assert.equal(passwordMatches('anything', undefined), false)
+test('admin password check', async () => {
+  assert.equal(await passwordMatches('secret one', 'secret one'), true)
+  assert.equal(await passwordMatches('secret', 'secret one'), false)
+  assert.equal(await passwordMatches('anything', undefined), false)
 })
