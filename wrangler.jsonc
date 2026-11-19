@@ -1,0 +1,29 @@
+// Cloudflare settings for areteprograms.net (a Worker with static assets).
+// Cloudflare builds and deploys this on every push to main.
+{
+  "name": "arete-landing",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // Unknown addresses get public/404.html, not the home page.
+    "not_found_handling": "404-page",
+    // Only the waiting list runs code; the page is served as plain files.
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "arete-waitlist",
+      "database_id": "d119551f-efdc-48fc-a6c3-6b326f8979cc"
+    }
+  ],
+  "vars": {
+    "SITE_URL": "https://areteprograms.net"
+  },
+  // ADMIN_PASSWORD, RESEND_API_KEY and EMAIL_FROM are set in Cloudflare
+  // (Settings > Variables and secrets), never here. Deploys keep them.
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}

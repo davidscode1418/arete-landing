@@ -1,6 +1,7 @@
 // The landing page's own backend: /api/waitlist on areteprograms.net.
-// A Cloudflare Pages Function; sign ups are kept in a D1 database bound as
-// DB (lib/d1store.mjs). Nothing here talks to the Arete app or its database.
+// Called by the Cloudflare Worker (src/worker.js); sign ups are kept in the
+// D1 database bound as DB (lib/d1store.mjs, wrangler.jsonc). Nothing here
+// talks to the Arete app or its database.
 //
 //   GET  /api/waitlist/status   spots taken and left (public)
 //   POST /api/waitlist          join: {name, email, sport, watch, source, consent, company}
@@ -8,14 +9,14 @@
 //   GET  /api/waitlist/admin    everyone on the list; needs
 //                               "Authorization: Bearer <ADMIN_PASSWORD>"
 //
-// Settings (Cloudflare > Workers & Pages > arete-landing > Settings):
-//   Bindings:   D1 database, variable name DB
-//   Variables:  ADMIN_PASSWORD (secret), SITE_URL, and later RESEND_API_KEY
-//               (secret) and EMAIL_FROM for the confirmation email. Without
-//               RESEND_API_KEY sign ups are still saved, just not emailed.
+// Settings: DB and SITE_URL are in wrangler.jsonc. In Cloudflare
+// (Workers & Pages > arete-landing > Settings > Variables and secrets):
+//   ADMIN_PASSWORD (secret), and later RESEND_API_KEY (secret) and
+//   EMAIL_FROM for the confirmation email. Without RESEND_API_KEY sign ups
+//   are still saved, just not emailed.
 
-import { d1Store } from '../../../lib/d1store.mjs'
-import { Problem, everyone, join, leave, passwordMatches, status } from '../../../lib/waitlist.mjs'
+import { d1Store } from '../lib/d1store.mjs'
+import { Problem, everyone, join, leave, passwordMatches, status } from '../lib/waitlist.mjs'
 
 const recent = new Map() // sign up times per address, per running instance
 const LIMIT = 5
@@ -63,7 +64,7 @@ function mailer(env) {
   }
 }
 
-export async function onRequest({ request, env }) {
+export async function waitlistApi(request, env) {
   if (!env.DB) return json({ detail: 'The waiting list isn’t set up yet.' }, 503)
   const store = d1Store(env.DB)
   const path = new URL(request.url).pathname.replace(/\/+$/, '')

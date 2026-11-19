@@ -1,7 +1,7 @@
 # Arete landing page (areteprograms.net)
 
 The coming soon page for Arete, with its waiting list. This is its own
-project: its own repository, its own Cloudflare Pages project, its own backend and
+project: its own repository, its own Cloudflare Worker, its own backend and
 storage. It promotes the Arete app (areteprograms.com) but shares no code,
 server or database with it. Never change the app from here.
 
@@ -10,8 +10,10 @@ server or database with it. Never change the app from here.
 - `public/`: the page. Plain files, no build: `index.html`, `styles.css`,
   `main.js` (setting at the top: `VIDEO_ID`), `admin.html` (the list,
   behind `ADMIN_PASSWORD`), `privacy.html`, `404.html`, `_headers`.
-- `functions/api/waitlist/[[path]].js`: the backend (`/api/waitlist`), a
-  Cloudflare Pages Function.
+- `src/worker.js`: the Cloudflare Worker. `/api/waitlist` goes to
+  `src/waitlist-api.js` (the backend); everything else is `public/`.
+- `wrangler.jsonc`: Cloudflare settings (name, assets, D1 binding,
+  `SITE_URL`). Cloudflare deploys from it on every push.
 - `lib/waitlist.mjs`: the waiting list rules (100 early access spots, sign
   up order, one place per email, the leave link, the welcome email). Web
   Crypto only, no Node modules.

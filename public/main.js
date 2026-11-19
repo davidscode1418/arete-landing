@@ -4,7 +4,7 @@
 //   VIDEO_ID       the YouTube id of the 5 minute video (the part after
 //                  "watch?v=" or "youtu.be/"). Empty shows "coming soon".
 //
-// Sign ups go to this site's own backend (functions/api/waitlist), which
+// Sign ups go to this site's own backend (src/waitlist-api.js), which
 // keeps them in a Cloudflare D1 database. Nothing here talks to the Arete app.
 //
 // Share links with ?s=linkedin, ?s=x, ?s=instagram or ?s=facebook on the
